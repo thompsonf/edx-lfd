@@ -1,5 +1,4 @@
 import random
-from itertools import permutations
 from math import exp, sqrt, log
 
 #given two points, return slope and intercept of line connecting them
