@@ -2,23 +2,21 @@ import random
 from math import exp, sqrt, log
 
 #given two points, return slope and intercept of line connecting them
+#p1 and p2 should have 1 as first coord, x and y as other two
 def get_slope_int(p1, p2):
-	m = (p2[1] - p1[1]) / (p2[0] - p1[0])
-	b = p1[1] - m * p1[0]
+	m = (p2[2] - p1[2]) / (p2[1] - p1[1])
+	b = p1[2] - m * p1[1]
 	return m, b
 
 #given line with slope m and y-intercept b,
 #return +1 if p is above the line, -1 otherwise
+#p should have 1 as first coord, x and y as other two
 def classify(m, b, p):
 	# if p lies below (or on) mx + b
-	if m*p[0] + b >= p[1]:
+	if m*p[1] + b >= p[2]:
 		return -1
 	else:
 		return 1
-
-#get random points in [-1,1]x[-1,1]
-def get_rand_pts(num_pts):
-	return [[random.uniform(-1, 1), random.uniform(-1, 1)] for i in range(num_pts)]
 
 #get random points in [-1,1]x[-1,1] as len 3 vectors with 1 as first entry
 def get_rand_pts_with_const(num_pts):
@@ -27,7 +25,7 @@ def get_rand_pts_with_const(num_pts):
 #find two random points in [-1,1]x[-1,1]
 #return slope and intercept of line connecting them
 def get_f():
-	p1, p2 = get_rand_pts(2)
+	p1, p2 = get_rand_pts_with_const(2)
 	return get_slope_int(p1, p2)
 
 #return u dot v
